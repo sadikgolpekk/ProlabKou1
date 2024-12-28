@@ -8,24 +8,17 @@
 #include <curl/curl.h>
 #define PlaySoundA PlaySound
 #include <raylib.h>
-
-
-
-
 #define MAX_SATIR 10 // Ekranda en fazla 10 satırda asker yerleştirilebilir.
 #define MAX_SUTUN 10 // Ekranda en fazla 10 sütunda asker yerleştirilebilir.
 #define MAX_ASKER 100 // Asker sayısı için maksimum değer
 #define IzgaraBoyutu 14
 #define HucreBoyutu 64 // Hücre boyutu (px)
 
-
 // Gelen veriyi tutmak için yapı
 struct bellekStruct {
     char *bellek;
     size_t size;
 };
-
-
 
 void savasmekanigi(); // prototip
 typedef struct {
@@ -72,16 +65,12 @@ typedef struct {
     double trollerkritikvurus;
 }KritikVurusHasar;
 
-
-
 typedef struct {
     SaldiriGuc saldiriguc;
     SavunmaGuc savunmaguc;
     KritikVurusAdim kritikvurusadim;
     KritikVurusHasar kritikvurushasar;
 }SavasVerileri;
-
-
 
 typedef struct { // Birlikler icin
     double saldiri;
@@ -90,20 +79,20 @@ typedef struct { // Birlikler icin
     double kritik_sans;
     int askersayi;
 } Birlik;
+
 typedef struct { // İnsan imp. ait Birlik bilgileri
     Birlik piyadeler;
     Birlik okcular;
     Birlik suvariler;
     Birlik kusatma_makineleri;
 } InsanImparatorluguBirlikleri;
+
 typedef struct { // Ork Legine ait Birlik bilgileri
     Birlik ork_dovusculeri;
     Birlik mizrakcilar;
     Birlik varg_binicileri;
     Birlik troller;
 } OrkLegiBirlikleri;
-
-
 
 typedef struct { // Canavarlar icin etki bilgileri
    char etki_degeri[10]; // Etki degeri
@@ -112,6 +101,7 @@ typedef struct { // Canavarlar icin etki bilgileri
    char aciklamaetki[30];
    double etkideger; // Etki degerinin inte donmus hali
 } Etki;
+
 typedef struct{  // İnsan imp. ait Canavar bilgileri
   Etki Ejderha;
   Etki Agri_Dagi_Devleri;
@@ -120,6 +110,7 @@ typedef struct{  // İnsan imp. ait Canavar bilgileri
   Etki Samur;
   char canavarsecilen[3][30];
 }InsanImparatorluguCanavarlari;
+
 typedef struct{ //Ork Legine ait Canavar bilgileri
   Etki Kara_troll;
   Etki Golge_kurtlari;
@@ -129,8 +120,6 @@ typedef struct{ //Ork Legine ait Canavar bilgileri
   Etki Buz_Devleri;
   char canavarsecilen[3][30];
 }OrkLegiCanavarlari;
-
-
 
 typedef struct{ // Kahramanlar icin bonus bilgileri
  char bonus_turu[20]; // Bonus türü
@@ -148,6 +137,7 @@ typedef struct{ // İnsan imp. ait kahraman bilgileri
   Bonus Tugrul_Bey;
   char kahramansecilen[3][30];
 }InsanImparatorluguKahramanlari;
+
 typedef struct{ // Ork Legine ait Kahraman Bilgileri
   Bonus Goruk_Vahsi;
   Bonus Thruk_Kemikkiran;
@@ -184,7 +174,6 @@ typedef struct{
 
 }TumArastirmalar;
 
-
 typedef struct {
     InsanImparatorluguBirlikleri insan_imparatorlugubirlik;
     OrkLegiBirlikleri ork_legibirlik;
@@ -196,9 +185,7 @@ typedef struct {
 
 } TumBirlikler;
 
-
 TumBirlikler birlikler = {0}; // Global değişken
-
 
 typedef struct {
     double maxHealth;
@@ -207,9 +194,7 @@ typedef struct {
     Texture2D texture; // Birim görseli
 } Unit;
 
-
 int savassonuc;
-
 
 // Gelen veriyi yazmak için callback fonksiyonu
 size_t BellegeYaz(void *contents, size_t size, size_t nmemb, struct bellekStruct *userp) {
@@ -237,19 +222,14 @@ double kalanorkdovusculeri;
 double kalanmizrakcilar;
 double kalanvargbinicileri;
 double kalantroller;
-
-
 double piyadeilkgorselsayi;
 double suvariilkgorselsayi;
 double okcuilkgorselsayi;
 double kusatmailkgorselsayi;
-
 double orkilkgorselsayi;
 double vargilkgorselsayi;
 double mizrakciilkgorselsayi;
 double trolilkgorselsayi;
-
-
 int gelenkahramanalparslan=0;
 int gelenkahramanfatih=0;
 int gelenkahramanmetehan=0;
@@ -259,8 +239,6 @@ int gelenkahramangorukvahsi=0;
 int gelenkahramanthrukkemikkiran=0;
 int gelenkahramanvrogkafakiran=0;
 int gelenkahramanugarzalim=0;
-
-
 int gelencanavarejderha=0;
 int gelencanavaragridagidevi=0;
 int gelencanavartepegoz=0;
@@ -273,13 +251,8 @@ int gelencanavaratesiblisi=0;
 int gelencanavarmakrogsavasbeyi=0;
 int gelencanavarbuzdevleri=0;
 
-
-
-
 void unittypes_readparse() {
-
     const char *dosya_yolu ="files\\unit_types.json"; // Dosya yolu belirt
-
 
     FILE *dosya = fopen(dosya_yolu, "r"); // Dosya açma
     if (dosya == NULL) {
@@ -309,10 +282,7 @@ void unittypes_readparse() {
     fclose(dosya);
 
 
-
-
 // JSON verilerini Parse edip structlara atma.
-
 
 const char *unittypesanahtarlar[] = {"saldiri", "savunma", "saglik", "kritik_sans"};
 const char *birlikAnahtarlar[] = {
@@ -427,10 +397,7 @@ const char *dosya_yolu = "files\\heroes.json"; // Dosya yolu belirt
     fclose(dosya);
 
 
-
 // JSON verilerini Parse edip structlara atma.
-
-
 
      const char *heroesanahtarlar[] = {
                 "\"bonus_turu\"",
@@ -496,7 +463,6 @@ char *degerler2[][3] = {
         birlikler.Insan_imparatorluguKahraman.Tugrul_Bey.aciklama
     }
 };
-
 
 
   for(int a=0;a<9;a++){
@@ -581,11 +547,7 @@ char *degerler2[][3] = {
 
     fclose(dosya);
 
-
-
-
     // JSON verilerini Parse edip structlara atma.
-
 
 
 
@@ -594,7 +556,6 @@ char *degerler2[][3] = {
                 "\"etki_turu\"",
                 "\"aciklama\""
             };
-
 
 const char *creatures[] = {
     "Kara_Troll",
@@ -609,7 +570,6 @@ const char *creatures[] = {
     "Karakurt",
     "Samur"
 };
-
 
 
 char *degerler3[][3] = {
@@ -671,9 +631,7 @@ char *degerler3[][3] = {
     },
 
 
-
 };
-
 
    for (int a = 0; a < 11; a++) {
     char *imlec = strstr(json_creaturesjson, creatures[a]); // Canavar için
@@ -1102,9 +1060,6 @@ void savasmekanigi(){ // Savas mekanigini yaz
     curl_global_cleanup();
 
 
-
-
-
 // JSON verilerini Parse edip structlara atma.
 
 
@@ -1178,7 +1133,6 @@ SavasVerileri savasveri; // İLK BASTAKİ GUC HESAPLA
  kalantroller=birlikler.ork_legibirlik.troller.askersayi;
 
 
-
  // İNSAN
 
   //insan birliklerin saldiri gucleri bul(birlik sayisi * birligin saldiri gucu)
@@ -1189,15 +1143,11 @@ savasveri.saldiriguc.kusatmamakinelerisaldirigucu=birlikler.insan_imparatorlugub
 
 
 
-
-
 //   Ork leglerinin savunma gucleri (birlik sayisi * birligin savunma gucu)
 savasveri.savunmaguc.orkdovusculerisavunmagucu=birlikler.ork_legibirlik.ork_dovusculeri.savunma*kalanorkdovusculeri;
 savasveri.savunmaguc.mizrakcilarsavunmagucu=birlikler.ork_legibirlik.mizrakcilar.savunma*kalanmizrakcilar;
 savasveri.savunmaguc.vargbinicilerisavunmagucu=birlikler.ork_legibirlik.varg_binicileri.savunma*kalanvargbinicileri;
 savasveri.savunmaguc.trollersavunmagucu=birlikler.ork_legibirlik.troller.savunma*kalantroller;
-
-
 
 
 
@@ -1212,7 +1162,6 @@ savasveri.savunmaguc.piyadesavunmagucu=birlikler.insan_imparatorlugubirlik.piyad
 savasveri.savunmaguc.okcusavunmagucu=birlikler.insan_imparatorlugubirlik.okcular.savunma*kalanokcu;
 savasveri.savunmaguc.suvarisavunmagucu=birlikler.insan_imparatorlugubirlik.suvariler.savunma*kalansuvari;
 savasveri.savunmaguc.kusatmamakinelerisavunmagucu=birlikler.insan_imparatorlugubirlik.kusatma_makineleri.savunma*kalankusatmamakineleri;
-
 
 //Kritik Sans
 double sayacpiyadekritik=100/birlikler.insan_imparatorlugubirlik.piyadeler.kritik_sans;
@@ -1231,8 +1180,6 @@ sayacorkdovuscukritik=floor(sayacorkdovuscukritik);
 sayacmizrakci=floor(sayacmizrakci);
 sayactrollerkritik=floor(sayactrollerkritik);
 sayacvargbinicikritik=floor(sayacvargbinicikritik);
-
-
 
 
 double toplaminsanimpsaldirigucu; // Toplam insan saldiri
@@ -1268,7 +1215,6 @@ const char *seneryokahraman[] = { // Kahraman degerlerini seneryodan alma
     "Vrog_Kafakiran",
     "Ugar_Zalim"
 };
-
 
 savasveri.saldiriguc.piyadesaldirigucu=birlikler.insan_imparatorlugubirlik.piyadeler.saldiri*kalanpiyade;
 savasveri.saldiriguc.okcusaldirigucu=birlikler.insan_imparatorlugubirlik.okcular.saldiri*kalanokcu;
