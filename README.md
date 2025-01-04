@@ -3,6 +3,8 @@
 Bu proje, insan imparatorlukları ve ork lejyonları arasındaki savaş mekaniklerini simüle eden bir strateji oyunudur. C programlama dili kullanılarak geliştirilmiştir ve JSON dosyalarından alınan verilerle zenginleştirilmiştir. Projede savaş mekaniği, ızgara tabanlı bir haritada görselleştirilmiş ve birimlerin performansı, kahramanlar ve canavarların etkileri ile detaylandırılmıştır.
 
 ---
+![Ekran görüntüsü 2025-01-04 205303](https://github.com/user-attachments/assets/a8f762c0-11d5-4550-9595-074c621a8d19)
+
 
 ## İçerik
 
