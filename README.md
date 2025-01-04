@@ -55,6 +55,8 @@ Savaş alanı, 14x11 boyutlarında bir ızgara yapısında raylib kütüphanesi 
   - Görselleştirme sırasında savaşın başlangıç ve bitiş durumları ayrı ayrı gösterilmiştir.
 
 ---
+![Ekran görüntüsü 2025-01-04 205350](https://github.com/user-attachments/assets/2b951fb4-e5e1-481e-8254-24dd879503ab)
+
 
 ## Deneysel Sonuçlar
 
